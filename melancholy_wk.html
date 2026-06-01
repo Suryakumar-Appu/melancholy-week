@@ -122,7 +122,7 @@ html,body{background:#05030a;font-family:'Lora',serif;display:flex;justify-conte
 }
 
 /* CHOICE AREA — below scene, normal flow */
-#choices{padding:14px 20px 32px;display:flex;flex-direction:column;min-height:195px}
+#choices{padding:14px 20px 32px;display:flex;flex-direction:column}
 #sit{font-size:11px;font-style:italic;color:rgba(160,133,96,0.38);min-height:20px;margin-bottom:12px;line-height:1.6}
 #cset{display:flex;flex-direction:column;gap:1px}
 .cb{
@@ -163,12 +163,12 @@ html,body{background:#05030a;font-family:'Lora',serif;display:flex;justify-conte
 <div id="app">
   <div id="scene">
     <div id="sky"></div>
-    <img class="room on" id="r-desk"      src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/desk.png"      alt="">
-    <img class="room"    id="r-empty"     src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/empty.png"     alt="">
-    <img class="room"    id="r-couch"     src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/couch.png"     alt="">
-    <img class="room"    id="r-bed_sleep" src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/bed_sleep.png" alt="">
-    <img class="room"    id="r-meditate"  src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/meditate.png"  alt="">
-    <img class="room"    id="r-bed_read"  src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/bed_read.png"  alt="">
+    <img class="room on" id="r-desk"      src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/desk.png"      alt="">
+    <img class="room"    id="r-empty"     src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/empty.png"     alt="">
+    <img class="room"    id="r-couch"     src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/couch.png"     alt="">
+    <img class="room"    id="r-bed_sleep" src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/bed_sleep.png" alt="">
+    <img class="room"    id="r-meditate"  src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/meditate.png"  alt="">
+    <img class="room"    id="r-bed_read"  src="https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/bed_read.png"  alt="">
     <div id="gloom"></div>
     <div id="hud">
       <span class="ht" id="dlbl">day 1</span>
@@ -213,11 +213,11 @@ html,body{background:#05030a;font-family:'Lora',serif;display:flex;justify-conte
 
 /* ── SKY ── */
 var SKIES = {
-  night:     'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/night.png',
-  dawn:      'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/dawn.png',
-  morning:   'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/morning.png',
-  afternoon: 'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/afternoon.png',
-  evening:   'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-wk-assets/main/evening.png'
+  night:     'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/night.png',
+  dawn:      'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/dawn.png',
+  morning:   'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/morning.png',
+  afternoon: 'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/afternoon.png',
+  evening:   'https://raw.githubusercontent.com/Suryakumar-Appu/melancholy-week/main/evening.png'
 };
 var curSky = '';
 function skyForHour(h) {
@@ -555,6 +555,11 @@ function toast(m) {
 }
 
 /* ── INIT ── */
+// Preload all room images
+['desk','empty','couch','bed_sleep','meditate','bed_read'].forEach(function(n){
+  var el = document.getElementById('r-' + n);
+  if (el && el.src) { var tmp = new Image(); tmp.src = el.src; }
+});
 showSky(skyForHour(G.hour));
 setGloom(G.sad, G.day);
 cur = avail();
